@@ -1,0 +1,31 @@
+@import './scss/variables';
+@import '@fontsource/fira-mono';
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fira Mono', sans-serif;
+  font-size: 16px;
+  color: $text-color;
+  background-color: $primary-color;
+  overflow-x: hidden;
+}
+
+.App {
+  height: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Fira Mono', sans-serif;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.41px;
+}
