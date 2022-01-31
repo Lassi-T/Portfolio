@@ -1,5 +1,9 @@
 @import '../../scss/variables';
 
+.landing {
+  height: 100vh;
+}
+
 .color-wave {
   position: absolute;
   width: 80rem;
@@ -27,6 +31,8 @@
   }
   @media screen and (max-width: 500px) {
     transform: rotate(-4deg);
+    width: 45rem;
+    top: -2rem;
   }
 }
 

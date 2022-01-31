@@ -1,10 +1,7 @@
 import React, { FC, ReactElement } from 'react';
-//import { useSpring, animated } from 'react-spring';
 import Typewriter from 'typewriter-effect';
 import { ReactComponent as ColorWave } from '../../assets/svg/colorWave.svg';
 import { ReactComponent as ColorWaveBG } from '../../assets/svg/colorWaveBG.svg';
-import { ReactComponent as Lassi } from '../../assets/svg/lassi.svg';
-import { ReactComponent as Timoskainen } from '../../assets/svg/timoskainen.svg';
 import { ReactComponent as Corner } from '../../assets/svg/corner.svg';
 import './Landing.scss';
 
