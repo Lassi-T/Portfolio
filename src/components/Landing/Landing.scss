@@ -50,6 +50,7 @@
   }
 
   &__title {
+    cursor: default;
     font-size: 4.6rem;
     font-weight: bold;
     padding: 0;
@@ -61,25 +62,14 @@
       font-size: 1.75rem;
     }
   }
+
   &__name {
     display: flex;
     flex-flow: row wrap;
     padding: 0;
     margin: 0;
   }
-  /*
-  &__svg {
-    height: 4rem;
-    width: auto;
-    margin-right: 2rem;
-    @media screen and (max-width: 1048px) {
-      height: 3rem;
-    }
-    @media screen and (max-width: 470px) {
-      height: 1.5rem;
-      margin-right: 1rem;
-    }
-  } */
+
   &__subtitle {
     display: flex;
     flex-direction: row;
@@ -127,10 +117,15 @@
   }
 }
 
-.scroll-indicator {
+.bottom {
   position: absolute;
+  width: 100vw;
   bottom: 1rem;
-  right: 50vw;
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-indicator {
   width: 3px;
   padding: 10px 15px;
   height: 35px;

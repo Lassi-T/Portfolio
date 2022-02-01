@@ -15,10 +15,6 @@ const Landing: FC = (): ReactElement => {
       <ColorWaveBG className='color-wave-bg' />
 
       <div className='landing-text'>
-        {/*<div className='landing-text__name'>
-          <Lassi className='landing-text__svg' />
-          <Timoskainen className='landing-text__svg' />
-        </div>*/}
         <h1 className='landing-text__title'>Lassi Timoskainen</h1>
         <div className='landing-text__subtitle'>
           <Corner className='landing-text__subtitle corner' />
@@ -36,8 +32,10 @@ const Landing: FC = (): ReactElement => {
         </div>
       </div>
 
-      <div className='scroll-indicator'>
-        <div className='scroll-indicator__wheel'></div>
+      <div className='bottom'>
+        <div className='scroll-indicator'>
+          <div className='scroll-indicator__wheel'></div>
+        </div>
       </div>
     </div>
   );

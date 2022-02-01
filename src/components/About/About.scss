@@ -2,33 +2,136 @@
 
 .about {
   height: 100vh;
+  position: relative;
+  overflow-x: hidden;
   overflow-y: hidden;
+}
 
-  &__color-wave {
-    position: absolute;
-    width: 130rem;
-    top: 120vh;
-    left: -35vw;
-    opacity: 10%;
-    transform: rotate(48deg);
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem;
+  margin-top: 0;
+  height: 100%;
 
-    @media screen and (max-width: 1048px) {
-      width: 100rem;
+  &__mobile {
+    flex-direction: column;
+    margin-top: 4rem;
+    height: 90%;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  &__middle {
+    margin-left: 10rem;
+    margin-right: 10rem;
+    @media screen and (max-width: 1100px) {
+      margin-left: 5rem;
+      margin-right: 5rem;
     }
-    @media screen and (max-width: 500px) {
-      width: 80rem;
-      left: -45vw;
+  }
+  &__info {
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 2rem 1.2rem 2rem 1.2rem;
+  width: 5rem;
+
+  &.left {
+    align-items: flex-start;
+  }
+  &.right {
+    align-items: flex-end;
+  }
+  &__mobile {
+    width: auto !important;
+
+    &.left {
+      margin-left: 0;
+    }
+    &.right {
+      margin-right: 0;
     }
   }
 }
 
-.profile {
-  position: absolute;
-  right: 0;
-  width: 35rem;
-  height: auto;
+.info-text {
+  font-size: 1.5rem;
+  margin: 0;
+  @media screen and (max-width: 530px) {
+    font-size: 1rem;
+  }
 }
 
 .icon {
-  width: 3rem;
+  height: 10rem;
+}
+
+.divider {
+  border-left: 0.25rem solid white;
+  height: 90%;
+  border-radius: 1rem;
+  transform: translateY(7%);
+}
+
+.profile {
+  width: 20rem;
+  pointer-events: none;
+  &__mobile {
+    width: 12rem;
+  }
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-evenly;
+  margin: 3rem;
+
+  &__link {
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+      transform: scale(0.95);
+    }
+    &.mobile {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.color-wave-about {
+  pointer-events: none;
+  position: absolute;
+  width: 130rem;
+  top: 20vh;
+  left: -35vw;
+  opacity: 10%;
+  transform: rotate(48deg);
+  overscroll-behavior-y: inherit;
+
+  &:hover {
+    opacity: 0;
+  }
+
+  @media screen and (max-width: 1048px) {
+    width: 100rem;
+  }
+  @media screen and (max-width: 500px) {
+    width: 80rem;
+    left: -45vw;
+  }
 }
