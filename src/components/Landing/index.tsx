@@ -28,7 +28,7 @@ const Landing: FC = (): ReactElement => {
                 cursor: '_',
               }}
               onInit={(typewriter) => {
-                typewriter.changeDelay(30);
+                typewriter.changeDelay(10);
                 typewriter.typeString(subtitleText).start();
               }}
             />

@@ -32,7 +32,7 @@
   @media screen and (max-width: 500px) {
     transform: rotate(-4deg);
     width: 45rem;
-    top: -2rem;
+    top: 5rem;
   }
 }
 
@@ -138,10 +138,6 @@
   border-radius: 25px;
   opacity: 0.75;
   box-sizing: content-box;
-
-  @media screen and (max-width: 500px) {
-    bottom: 15vh;
-  }
 
   &__wheel {
     width: 2px;

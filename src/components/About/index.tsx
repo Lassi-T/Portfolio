@@ -1,11 +1,13 @@
 import React, { FC, ReactElement } from 'react';
-import { ReactComponent as Profile } from '../../assets/svg/profile.svg';
+import { ReactComponent as ColorWaveBG } from '../../assets/svg/colorWaveBG.svg';
+import cpp from '../../assets/icons/cpp.png';
 import './About.scss';
 
 const About: FC = (): ReactElement => {
   return (
     <div className='about'>
-      <Profile className='profile' />
+      <ColorWaveBG className='about__color-wave' />
+      <img src={cpp} className='icon'></img>
     </div>
   );
 };

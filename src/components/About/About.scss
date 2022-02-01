@@ -2,6 +2,24 @@
 
 .about {
   height: 100vh;
+  overflow-y: hidden;
+
+  &__color-wave {
+    position: absolute;
+    width: 130rem;
+    top: 120vh;
+    left: -35vw;
+    opacity: 10%;
+    transform: rotate(48deg);
+
+    @media screen and (max-width: 1048px) {
+      width: 100rem;
+    }
+    @media screen and (max-width: 500px) {
+      width: 80rem;
+      left: -45vw;
+    }
+  }
 }
 
 .profile {
@@ -9,4 +27,8 @@
   right: 0;
   width: 35rem;
   height: auto;
+}
+
+.icon {
+  width: 3rem;
 }
