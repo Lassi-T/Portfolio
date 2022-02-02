@@ -28,6 +28,14 @@ const About: FC = (): ReactElement => {
   const [mobile, setMobile] = useState(window.innerWidth <= 880);
   const [iconSize, setIconSize] = useState(window.innerWidth <= 880 ? 30 : 35);
 
+  const [showContent, setShowContent] = useState(false);
+
+  const pop = () => {
+    if (window.scrollY > 600) {
+      setShowContent(true);
+    }
+  };
+
   // Page scaling
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -38,6 +46,14 @@ const About: FC = (): ReactElement => {
     setIconSize(mobile ? 30 : 40);
   }, [mobile]);
 
+  // Check scrollPos
+  useEffect(() => {
+    if (!showContent) {
+      window.addEventListener('scroll', pop);
+      return () => window.removeEventListener('scroll', pop);
+    }
+  }, []);
+
   const handleLinkClick = (link: string) => {
     window.open(link, '_blank');
   };
@@ -46,21 +62,93 @@ const About: FC = (): ReactElement => {
     return (
       <div className='about'>
         <ColorWaveBG className='color-wave-about' />
-
         <div className='content content__mobile'>
           <img className='profile profile__mobile' src={profile} alt='profile' />
 
           <div className='list__info mobile'>
-            <div className='vertical right animation__left'>
-              {textLeft.map((text, i) => {
-                return (
-                  <p className='info-text' key={`info-text-${i}`}>
-                    {text}
-                  </p>
-                );
-              })}
+            {showContent ? (
+              <div className='row'>
+                <div className='vertical right animation__left'>
+                  {textLeft.map((text, i) => {
+                    return (
+                      <p className='info-text' key={`info-text-${i}`}>
+                        {text}
+                      </p>
+                    );
+                  })}
+                </div>
+                <div className='vertical left vertical__mobile animation__left'>
+                  <SiCplusplus size={iconSize} />
+                  <FaPython size={iconSize} />
+                  <SiJavascript size={iconSize} />
+                  <SiTypescript size={iconSize} />
+                  <FaReact size={iconSize} />
+                  <FaVuejs size={iconSize} />
+                  <FaSass size={iconSize} />
+                  <FaHtml5 size={iconSize} />
+                </div>
+              </div>
+            ) : (
+              <div></div>
+            )}
+
+            <div className='divider'></div>
+
+            {showContent ? (
+              <div className='row'>
+                <div className='vertical right vertical__mobile animation__right'>
+                  <FaNodeJs size={iconSize} />
+                  <SiExpress size={iconSize} />
+                  <SiMongodb size={iconSize} />
+                  <FaAws size={iconSize} />
+                  <AiOutlineConsoleSql size={iconSize} />
+                  <FaGitSquare size={iconSize} />
+                  <FaFigma size={iconSize} />
+                  <SiJirasoftware size={iconSize} />
+                </div>
+                <div className='vertical left animation__right'>
+                  {textRight.map((text, i) => {
+                    return (
+                      <p className='info-text' key={`info-text-${i}`}>
+                        {text}
+                      </p>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
+
+          {showContent ? (
+            <div className='links'>
+              <FaLinkedin
+                size={mobile ? 55 : 65}
+                className='links__link mobile'
+                onClick={() => handleLinkClick('https://www.linkedin.com/in/lassit/')}
+              />
+              <FaGithub
+                size={mobile ? 55 : 65}
+                className='links__link mobile'
+                onClick={() => handleLinkClick('https://github.com/Lassi-T/')}
+              />
             </div>
-            <div className='vertical left vertical__mobile animation__left'>
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className='about'>
+      <ColorWaveBG className='color-wave-about' />
+
+      <div className='content'>
+        {showContent ? (
+          <div className='list__info left'>
+            <div className='vertical right'>
               <SiCplusplus size={iconSize} />
               <FaPython size={iconSize} />
               <SiJavascript size={iconSize} />
@@ -73,7 +161,56 @@ const About: FC = (): ReactElement => {
 
             <div className='divider'></div>
 
-            <div className='vertical right vertical__mobile animation__right'>
+            <div className='vertical left'>
+              {textLeft.map((text, i) => {
+                return (
+                  <p className='info-text' key={`info-text-${i}`}>
+                    {text}
+                  </p>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
+
+        <div className='list__middle'>
+          <img className='profile' src={profile} alt='profile' />
+
+          {showContent ? (
+            <div className='links'>
+              <FaLinkedin
+                size={65}
+                className='links__link'
+                onClick={() => handleLinkClick('https://www.linkedin.com/in/lassit/')}
+              />
+              <FaGithub
+                size={65}
+                className='links__link'
+                onClick={() => handleLinkClick('https://github.com/Lassi-T/')}
+              />
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </div>
+
+        {showContent ? (
+          <div className='list__info right'>
+            <div className='vertical right'>
+              {textRight.map((text, i) => {
+                return (
+                  <p className='info-text' key={`info-text-${i}`}>
+                    {text}
+                  </p>
+                );
+              })}
+            </div>
+
+            <div className='divider'></div>
+
+            <div className='vertical left'>
               <FaNodeJs size={iconSize} />
               <SiExpress size={iconSize} />
               <SiMongodb size={iconSize} />
@@ -83,104 +220,10 @@ const About: FC = (): ReactElement => {
               <FaFigma size={iconSize} />
               <SiJirasoftware size={iconSize} />
             </div>
-
-            <div className='vertical left animation__right'>
-              {textRight.map((text, i) => {
-                return (
-                  <p className='info-text' key={`info-text-${i}`}>
-                    {text}
-                  </p>
-                );
-              })}
-            </div>
           </div>
-
-          <div className='links'>
-            <FaLinkedin
-              size={mobile ? 55 : 65}
-              className='links__link mobile'
-              onClick={() => handleLinkClick('https://www.linkedin.com/in/lassit/')}
-            />
-            <FaGithub
-              size={mobile ? 55 : 65}
-              className='links__link mobile'
-              onClick={() => handleLinkClick('https://github.com/Lassi-T/')}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className='about'>
-      <ColorWaveBG className='color-wave-about' />
-
-      <div className='content'>
-        <div className='list__info left'>
-          <div className='vertical right'>
-            <SiCplusplus size={iconSize} />
-            <FaPython size={iconSize} />
-            <SiJavascript size={iconSize} />
-            <SiTypescript size={iconSize} />
-            <FaReact size={iconSize} />
-            <FaVuejs size={iconSize} />
-            <FaSass size={iconSize} />
-            <FaHtml5 size={iconSize} />
-          </div>
-
-          <div className='divider'></div>
-
-          <div className='vertical left'>
-            {textLeft.map((text, i) => {
-              return (
-                <p className='info-text' key={`info-text-${i}`}>
-                  {text}
-                </p>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className='list__middle'>
-          <img className='profile' src={profile} alt='profile' />
-          <div className='links'>
-            <FaLinkedin
-              size={65}
-              className='links__link'
-              onClick={() => handleLinkClick('https://www.linkedin.com/in/lassit/')}
-            />
-            <FaGithub
-              size={65}
-              className='links__link'
-              onClick={() => handleLinkClick('https://github.com/Lassi-T/')}
-            />
-          </div>
-        </div>
-
-        <div className='list__info right'>
-          <div className='vertical right'>
-            {textRight.map((text, i) => {
-              return (
-                <p className='info-text' key={`info-text-${i}`}>
-                  {text}
-                </p>
-              );
-            })}
-          </div>
-
-          <div className='divider'></div>
-
-          <div className='vertical left'>
-            <FaNodeJs size={iconSize} />
-            <SiExpress size={iconSize} />
-            <SiMongodb size={iconSize} />
-            <FaAws size={iconSize} />
-            <AiOutlineConsoleSql size={iconSize} />
-            <FaGitSquare size={iconSize} />
-            <FaFigma size={iconSize} />
-            <SiJirasoftware size={iconSize} />
-          </div>
-        </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

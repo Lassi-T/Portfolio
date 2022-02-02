@@ -165,7 +165,10 @@
     left: -45vw;
   }
 }
-
+.row {
+  display: flex;
+  flex-direction: row;
+}
 .animation {
   &__left {
     animation-name: fadeFromLeft;
