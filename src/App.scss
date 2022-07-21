@@ -31,3 +31,16 @@ h6 {
   line-height: 1.2;
   letter-spacing: 0.41px;
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-track {
+  background: #0f1014;
+  border-left: 2px solid #0f1014;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 1rem;
+  transition: 1s;
+}

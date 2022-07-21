@@ -1,4 +1,5 @@
 import React, { FC, ReactElement, useState, useEffect } from 'react';
+import { useCtx } from '../../context';
 import { ReactComponent as ColorWaveBG } from '../../assets/svg/colorWaveBG.svg';
 import profile from '../../assets/profile.png';
 import './About.scss';
@@ -21,24 +22,19 @@ import { SiCplusplus, SiJavascript, SiTypescript, SiExpress, SiMongodb, SiJiraso
 import { AiOutlineConsoleSql } from 'react-icons/ai';
 
 //Content
-const textLeft: Array<string> = ['C++', 'Python', 'Javascript', 'Typescript', 'React', 'Vue', 'SCSS', 'HTML'];
-const textRight: Array<string> = ['Node', 'Express', 'MongoDB', 'AWS', 'SQL', 'Git', 'Figma', 'Jira'];
+const textLeft: string[] = ['C++', 'Python', 'Javascript', 'Typescript', 'React', 'Vue', 'SCSS', 'HTML'];
+const textRight: string[] = ['Node', 'Express', 'MongoDB', 'AWS', 'SQL', 'Git', 'Figma', 'Jira'];
 
 const About: FC = (): ReactElement => {
   const [mobile, setMobile] = useState(window.innerWidth <= 880);
   const [iconSize, setIconSize] = useState(window.innerWidth <= 880 ? 30 : 35);
-
   const [showContent, setShowContent] = useState(false);
 
-  const pop = () => {
-    if (window.scrollY > 600) {
-      setShowContent(true);
-    }
-  };
+  const { scrollPos } = useCtx();
 
   // Page scaling
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', (): void => {
       setMobile(window.innerWidth <= 880);
     });
   });
@@ -46,13 +42,13 @@ const About: FC = (): ReactElement => {
     setIconSize(mobile ? 30 : 40);
   }, [mobile]);
 
-  // Check scrollPos
   useEffect(() => {
     if (!showContent) {
-      window.addEventListener('scroll', pop);
-      return () => window.removeEventListener('scroll', pop);
+      if (scrollPos > 600) {
+        setShowContent(true);
+      }
     }
-  }, []);
+  }, [scrollPos]);
 
   const handleLinkClick = (link: string) => {
     window.open(link, '_blank');
@@ -88,9 +84,7 @@ const About: FC = (): ReactElement => {
                   <FaHtml5 size={iconSize} />
                 </div>
               </div>
-            ) : (
-              <div></div>
-            )}
+            ) : null}
 
             <div className='divider'></div>
 
@@ -116,9 +110,7 @@ const About: FC = (): ReactElement => {
                   })}
                 </div>
               </div>
-            ) : (
-              <div></div>
-            )}
+            ) : null}
           </div>
 
           {showContent ? (
@@ -134,9 +126,7 @@ const About: FC = (): ReactElement => {
                 onClick={() => handleLinkClick('https://github.com/Lassi-T/')}
               />
             </div>
-          ) : (
-            <div></div>
-          )}
+          ) : null}
         </div>
       </div>
     );
@@ -149,14 +139,14 @@ const About: FC = (): ReactElement => {
         {showContent ? (
           <div className='list__info left'>
             <div className='vertical right'>
-              <SiCplusplus size={iconSize} />
-              <FaPython size={iconSize} />
-              <SiJavascript size={iconSize} />
-              <SiTypescript size={iconSize} />
-              <FaReact size={iconSize} />
-              <FaVuejs size={iconSize} />
-              <FaSass size={iconSize} />
-              <FaHtml5 size={iconSize} />
+              <SiCplusplus size={iconSize} className='icon' />
+              <FaPython size={iconSize} className='icon' />
+              <SiJavascript size={iconSize} className='icon' />
+              <SiTypescript size={iconSize} className='icon' />
+              <FaReact size={iconSize} className='icon' />
+              <FaVuejs size={iconSize} className='icon' />
+              <FaSass size={iconSize} className='icon' />
+              <FaHtml5 size={iconSize} className='icon' />
             </div>
 
             <div className='divider'></div>
@@ -176,24 +166,23 @@ const About: FC = (): ReactElement => {
         )}
 
         <div className='list__middle'>
-          <img className='profile' src={profile} alt='profile' />
-
           {showContent ? (
-            <div className='links'>
-              <FaLinkedin
-                size={65}
-                className='links__link'
-                onClick={() => handleLinkClick('https://www.linkedin.com/in/lassit/')}
-              />
-              <FaGithub
-                size={65}
-                className='links__link'
-                onClick={() => handleLinkClick('https://github.com/Lassi-T/')}
-              />
-            </div>
-          ) : (
-            <div></div>
-          )}
+            <>
+              <img className='profile' src={profile} alt='profile' />
+              <div className='links'>
+                <FaLinkedin
+                  size={65}
+                  className='links__link'
+                  onClick={() => handleLinkClick('https://www.linkedin.com/in/lassit/')}
+                />
+                <FaGithub
+                  size={65}
+                  className='links__link'
+                  onClick={() => handleLinkClick('https://github.com/Lassi-T/')}
+                />
+              </div>
+            </>
+          ) : null}
         </div>
 
         {showContent ? (
@@ -211,14 +200,14 @@ const About: FC = (): ReactElement => {
             <div className='divider'></div>
 
             <div className='vertical left'>
-              <FaNodeJs size={iconSize} />
-              <SiExpress size={iconSize} />
-              <SiMongodb size={iconSize} />
-              <FaAws size={iconSize} />
-              <AiOutlineConsoleSql size={iconSize} />
-              <FaGitSquare size={iconSize} />
-              <FaFigma size={iconSize} />
-              <SiJirasoftware size={iconSize} />
+              <FaNodeJs size={iconSize} className='icon' />
+              <SiExpress size={iconSize} className='icon' />
+              <SiMongodb size={iconSize} className='icon' />
+              <FaAws size={iconSize} className='icon' />
+              <AiOutlineConsoleSql size={iconSize} className='icon' />
+              <FaGitSquare size={iconSize} className='icon' />
+              <FaFigma size={iconSize} className='icon' />
+              <SiJirasoftware size={iconSize} className='icon' />
             </div>
           </div>
         ) : (
